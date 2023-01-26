@@ -1,41 +1,27 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  margin: 0;
-  padding: 0;
-}
-
+/* Set the container width to 100% */
 .container {
-  max-width: 800px;
-  margin: 0 auto;
+  width: 100%;
+}
+
+.header {
+  background-color: aquamarine;
   text-align: center;
+  text-colorr: ;
+}
+/* Float the searchbox to the left and set its width to 33.33% */
+.searchBox {
+  float: left;
+  width: 33.33%;
 }
 
-form {
-  margin-top: 50px;
+button {
+  float: left;
+  width: 33.33%;
+  display: block;
 }
-
-label {
-  font-size: 20px;
-  margin-right: 10px;
-}
-
-input[type="text"] {
-  font-size: 20px;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-}
-
-button[type="submit"] {
-  font-size: 20px;
-  padding: 12px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  background-color: #4caf50;
-  color: white;
-  cursor: pointer;
+/* Float the cityResults and 5dayForecast sections to the right and set their width to 66.66% */
+.cityResults,
+.dayforecast {
+  float: right;
+  width: 66.66%;
 }
