@@ -1,65 +1,89 @@
-//Part 1 - fetchWeather Function:
 
-var key = "9ee3739a5b753008cdca414a55720f0d";
-var city = "Kansas City";
+        // API key for OpenWeatherMap
+const API_KEY = "5d50b70e7bb086d6aa019fa811d9bdd6";
 
-var forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&cnt=40&appid=${key}`;
+// Retrieve elements from the DOM
+const searchForm = document.getElementById("searchForm");
+const searchCity = document.getElementById("searchCity");
+const searchState = document.getElementById("searchState");
+const searchZip = document.getElementById("searchZip");
+const cityName = document.getElementById("cityName");
+const recentSearches = document.getElementById("recentSearches");
+const forecastContainer = document.getElementById("forecastContainer");
 
-fetch(forecastUrl)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-
-    var lat = data.city.coord.lat;
-    var lon = data.city.coord.lon;
-
-    var dayDate = data.list[2].dt_txt;
-    var icon = data.list[2].weather.icon;
-    var tempHigh = data.list[2].main.temp_max;
-    var tempLow = data.list[2].main.temp_min;
-    var windSpeed = data.list[2].wind.speed;
-    var humidity = data.list[2].main.humidity;
-    //Need to connect these variables into their appropriate places in the "cityResults" section and the "card-day" elements in the "forecast" section.
-
-    //The id values of those sections (2, 10, 18, 26, & 34) matches with which list needs to be indexed into for that day within the array returned in the JSON object rendered from the API call/fetch.
-
-    //I want to run some kind of looping function, passing the "id" value into the variable definition, so that variable can have a different value depending on the id value in the html.
-
-    //Not sure how to write all of that into functional code.
-  });
-
-//Part 2. Add click event to "Search" button in customSearch, also city Preset buttons
-
-var searchButton = document.getElementById("search-form");
-
-var formInput = document.getElementById("form-input");
-
-function formSubmit(event) {
+// Set up event listener for form submission
+searchForm.addEventListener("submit", function(event) {
+  // Prevent default form submission behavior
   event.preventDefault();
-  console.log(formInput.value);
-  var formInput = formInput.value;
-}
-//2. Once "Click" is heard, pull City Name input from user in input div.
-//
 
-searchButton.addEventListener("submit", formSubmit);
+  // Retrieve search query values
+  const city = searchCity.value.trim();
+  const state = searchState.value.trim().toUpperCase();
+  const zip = searchZip.value.trim();
 
-//Part 3 - City Preset Buttons:
-// lat & Lon for City Presets:
+  // Construct the API URL
+  let apiUrl;
+  if (city) {
+    apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},US&units=imperial&appid=${API_KEY}`;
+  } else if (zip) {
+    apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},US&units=imperial&appid=${API_KEY}`;
+  } else {
+    // If no search query is entered, do nothing
+    return;
+  }
 
-var atlanta = "Atlanta";
-var denver = "Denver";
-var seattle = "seattle";
-var sanFrancisco = "San Francisco";
-var orlando = "Orlando";
-var newYork = "New York";
-var chicago = "Chicago";
-var Austin = "Austin";
+  // Call the OpenWeatherMap API with the constructed URL
+  fetch(apiUrl)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        // If the API call fails, throw an error
+        throw new Error(response.statusText);
+      }
+    })
+    .then(data => {
+      // Update the city name
+      cityName.textContent = `${data.name}, ${data.sys.country}`;
 
-//3.1 Need to add click event to these buttons.
+      // Add this search to the search history
+      const searchHistoryItem = document.createElement("button");
+      searchHistoryItem.textContent = `${data.name}, ${data.sys.country}`;
+      searchHistoryItem.classList.add("btn", "btn-secondary", "mb-2");
+      searchHistoryItem.addEventListener("click", function() {
+        // When a search history item is clicked, perform the search again
+        searchCity.value = data.name;
+        searchState.value = data.sys.country;
+        searchZip.value = "";
+        searchForm.dispatchEvent(new Event("submit"));
+      });
+      recentSearches.prepend(searchHistoryItem);
 
-//3.2 When click is heard, append the value of the "city" variable to be the value of the clicked buttons variable;
+      // Construct URL for 5-day forecast API call
+      const lat = data.coord.lat;
+      const lon = data.coord.lon;
+      const forecastApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`;
 
-//3.3 Once values have been changed, run through code in Part 1: concatenate new API call with new value for the city variable, fetch data, and return new data values for the weather variables.
+      // Call the 5-day forecast API with the constructed URL
+      fetch(forecastApiUrl)
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            // If the API call fails, throw an error
+            throw new Error(response.statusText);
+          }
+        })
+        .then(data => {
+          // Clear the previous forecast data
+          forecastContainer.innerHTML = "";
+
+          // Loop through each day of the 5-day forecast
+          for (let i = 0; i < 5; i++) {
+            const forecastData = data.daily[i];
+          }
+            // Create a card for each day of the 5-day forecast
+            const forecastCard = document.createElement("div");
+            forecastCard.classList.add("card")
+            }
+          )

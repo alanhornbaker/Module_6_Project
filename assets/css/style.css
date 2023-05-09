@@ -1,27 +1,113 @@
-/* Set the container width to 100% */
-.container {
-  width: 100%;
+/* Font Family */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.header {
-  background-color: aquamarine;
-  text-align: center;
-  text-colorr: ;
-}
-/* Float the searchbox to the left and set its width to 33.33% */
-.searchBox {
-  float: left;
-  width: 33.33%;
+/* Global Styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
 }
 
-button {
-  float: left;
-  width: 33.33%;
-  display: block;
+a {
+  text-decoration: none;
 }
-/* Float the cityResults and 5dayForecast sections to the right and set their width to 66.66% */
-.cityResults,
-.dayforecast {
-  float: right;
-  width: 66.66%;
+
+/* Colors */
+:root {
+  --primary-color: #1a1a1a;
+  --secondary-color: #9b9b9b;
+  --tertiary-color: #ffffff;
+}
+
+body {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+/* Header */
+header {
+  background-color: var(--tertiary-color);
+  padding: 1.5rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 3rem;
+}
+
+/* Search Form */
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"] {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+button[type="submit"] {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  background-color: var(--secondary-color);
+  color: var(--tertiary-color);
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #444444;
+}
+
+#recentSearches {
+  margin-top: 2rem;
+}
+
+/* City Name */
+#cityName {
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* 5 Day Forecast */
+#5dayForecast {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.card {
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  border: none;
+}
+
+.card h5 {
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  margin-bottom: 0.25rem;
+}
+
+.card span {
+  font-weight: 600;
 }

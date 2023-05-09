@@ -2,15 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width-device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
     <link <!-- Bootstrap Link -- />
     />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="C:\Users\Alan\Desktop\bootcamp\Module Files\Module 6 Files\Module_6_Project\assets\css\style.css"
-    />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
   </head>
   <body>
     <div class="container">
@@ -24,25 +20,25 @@
           <button type="submit">Search</button>
         </form>
         <div class="cityPresets">
-          <button>Atlanta</button>
-          <button>Denver</button>
-          <button>Seattle</button>
-          <button>San Francisco</button>
-          <button>Orlando</button>
-          <button>New York</button>
-          <button>Chicago</button>
-          <button>Austin</button>
+          <button type="click" id="Atlanta">Atlanta</button>
+          <button type="click" id="Denver">Denver</button>
+          <button type="click">Seattle</button>
+          <button type="click">San Francisco</button>
+          <button type="click">Orlando</button>
+          <button type="click">New York</button>
+          <button type="click">Chicago</button>
+          <button type="click">Austin</button>
         </div>
       </section>
-      <section class="cityResults" id="2">
-        <h2></h2>
-        <h3>Date:</h3>
-        <icon></icon>
-        <h3>Temperature:</h3>
-        <h3>Wind:</h3>
-        <h3>Humidity:</h3>
+      <section class="card-day" id="2">
+        <h2>Kansas City</h2>
+        <h3>Date</h3>
+        <icon class="icon">Icon</icon>
+        <h3 class="temperature">Temperature:</h3>
+        <h3 class="wind">Wind:</h3>
+        <h3 class="humidity">Humidity:</h3>
       </section>
-      <section class="Forecast">
+      <section class="forecast">
         <h3>Forecast:</h3>
         <div class="card-day" id="10">
           <!-- dayDate -->
@@ -75,7 +71,7 @@
         </div>
       </section>
     </div>
-    <script src="C:\Users\Alan\Desktop\bootcamp\Module Files\Module 6 Files\Module_6_Project\assets\js\script.js"></script>
+    <script src="./assets/js/script.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
